@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static ua.clamor1s.Accountant.TestConstants.PRODUCT_UUID;
 import static ua.clamor1s.Accountant.TestConstants.getProductWithId;
 

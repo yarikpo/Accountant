@@ -1,7 +1,9 @@
 package ua.clamor1s.Accountant.dto;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import ua.clamor1s.Accountant.entity.enums.Period;
 
 public record ProductTypeDto(

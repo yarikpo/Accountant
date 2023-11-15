@@ -14,8 +14,10 @@ import ua.clamor1s.Accountant.service.implementations.ProductTypeServiceImpl;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static ua.clamor1s.Accountant.TestConstants.*;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static ua.clamor1s.Accountant.TestConstants.getProductTypeWithId;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductTypeServiceImplTest {

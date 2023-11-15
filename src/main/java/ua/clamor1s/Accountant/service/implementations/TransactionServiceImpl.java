@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static ua.clamor1s.Accountant.entity.enums.State.SOLD;
-import static ua.clamor1s.Accountant.entity.enums.TransferType.*;
+import static ua.clamor1s.Accountant.entity.enums.TransferType.SELL;
 
 @Service
 @RequiredArgsConstructor

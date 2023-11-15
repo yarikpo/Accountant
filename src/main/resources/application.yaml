@@ -1,0 +1,20 @@
+env:
+  db:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+
+spring:
+  datasource:
+    url: ${env.db.url}
+    username: ${env.db.username}
+    password: ${env.db.password}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yaml
+    enabled: true
+
+server:
+  port: 9000

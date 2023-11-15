@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: y.popovych
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: purchase_price
+                  type: float(53)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: retail_price_buy
+                  type: float(53)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: retail_price_sell
+                  type: float(53)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: purchase_buy_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: varchar(31)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: product
+            baseColumnNames: type_id
+            constraintName: fk_product_product_type
+            referencedTableName: product_type
+            referencedColumnNames: id

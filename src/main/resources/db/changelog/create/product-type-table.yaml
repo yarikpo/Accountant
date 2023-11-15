@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: y.popovych
+      changes:
+        - createTable:
+            tableName: product_type
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(31)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: depreciation_limit
+                  type: float(53)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: depreciation_sell_rate
+                  type: float(53)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: depreciation
+                  type: float(53)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: depreciation_period
+                  type: varchar(31)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: benefit_rate
+                  type: float(53)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: benefit_period
+                  type: varchar(31)
+                  constraints:
+                    nullable: false

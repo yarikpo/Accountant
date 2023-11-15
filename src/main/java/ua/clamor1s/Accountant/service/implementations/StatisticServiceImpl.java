@@ -63,4 +63,6 @@ public class StatisticServiceImpl implements StatisticService {
         Double price = product.getPurchasePrice();
         return Math.abs(price / amountOfLostMoney);
     }
+
+//    TODO create scheduled events
 }

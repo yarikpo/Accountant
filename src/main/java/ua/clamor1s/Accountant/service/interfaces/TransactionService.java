@@ -4,7 +4,6 @@ import ua.clamor1s.Accountant.dto.TransactionDto;
 import ua.clamor1s.Accountant.entity.Transaction;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface TransactionService {
 

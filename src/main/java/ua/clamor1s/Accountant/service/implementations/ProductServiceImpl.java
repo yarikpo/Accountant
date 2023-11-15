@@ -18,7 +18,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static ua.clamor1s.Accountant.entity.enums.State.BOUGHT;
-import static ua.clamor1s.Accountant.entity.enums.State.SOLD;
 
 @Service
 @RequiredArgsConstructor
@@ -57,4 +56,6 @@ public class ProductServiceImpl implements ProductService {
                 .findById(UUID.fromString(productDto.typeId()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
     }
+
+//    TODO create scheduled events
 }

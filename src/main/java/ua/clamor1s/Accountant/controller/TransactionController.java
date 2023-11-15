@@ -9,7 +9,6 @@ import ua.clamor1s.Accountant.entity.Transaction;
 import ua.clamor1s.Accountant.service.interfaces.TransactionService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor

@@ -44,4 +44,6 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleExpectedException(ResponseStatusException ex) {
         return new ResponseEntity<>(ex.getReason(), ex.getStatusCode());
     }
+
+//    TODO create custom exceptions
 }

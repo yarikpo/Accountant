@@ -36,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
     public void createTransaction(TransactionDto transactionDto) {
         var transaction = setTransactionWithFields(transactionDto);
         if (transaction.getProductId().getState().equals(SOLD)) {
-            throw new IllegalArgumentException();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         if (transactionDto.transferType().toString().equals(SELL.toString())) {
             buyProduct(transaction.getProductId());
@@ -80,4 +80,6 @@ public class TransactionServiceImpl implements TransactionService {
         return productRepository.findById(UUID.fromString(transactionDto.productId()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
+
+//    TODO create scheduled events
 }

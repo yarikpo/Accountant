@@ -9,7 +9,6 @@ import ua.clamor1s.Accountant.entity.Product;
 import ua.clamor1s.Accountant.service.interfaces.ProductService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor

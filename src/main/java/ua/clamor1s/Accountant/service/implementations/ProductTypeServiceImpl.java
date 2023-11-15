@@ -2,6 +2,7 @@ package ua.clamor1s.Accountant.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.clamor1s.Accountant.dto.ProductTypeDto;
 import ua.clamor1s.Accountant.entity.ProductType;
 import ua.clamor1s.Accountant.repository.ProductTypeRepository;
@@ -22,16 +23,11 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
+    @Transactional
     public void createProductType(ProductTypeDto productTypeDto) {
         var productType = setProductTypeWithFields(productTypeDto);
         productTypeRepository.save(productType);
     }
-
-//    @Override
-//    public ProductType updateProductType(ProductType productType) {
-//        var productType = productTypeRepository.
-//        return null;
-//    }
 
     private ProductType setProductTypeWithFields(ProductTypeDto productTypeDto) {
         var productType = new ProductType();

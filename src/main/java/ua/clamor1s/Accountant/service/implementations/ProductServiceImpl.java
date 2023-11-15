@@ -2,20 +2,21 @@ package ua.clamor1s.Accountant.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.clamor1s.Accountant.dto.ProductDto;
-import ua.clamor1s.Accountant.dto.ProductTypeDto;
 import ua.clamor1s.Accountant.entity.Product;
 import ua.clamor1s.Accountant.entity.ProductType;
-import ua.clamor1s.Accountant.entity.enums.State;
 import ua.clamor1s.Accountant.repository.ProductRepository;
 import ua.clamor1s.Accountant.repository.ProductTypeRepository;
 import ua.clamor1s.Accountant.service.interfaces.ProductService;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+
+import static ua.clamor1s.Accountant.entity.enums.State.BOUGHT;
+import static ua.clamor1s.Accountant.entity.enums.State.SOLD;
 
 @Service
 @RequiredArgsConstructor
@@ -30,12 +31,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void createProduct(ProductDto productDto) {
-        var product = setProductTypeWithFields(productDto);
+        var product = setProductWithFields(productDto);
         productRepository.save(product);
     }
 
-    private Product setProductTypeWithFields(ProductDto productDto) {
+    private Product setProductWithFields(ProductDto productDto) {
         var product = new Product();
         product.setId(UUID.randomUUID());
         product.setName(productDto.name());
@@ -44,13 +46,13 @@ public class ProductServiceImpl implements ProductService {
         product.setRetailPriceBuy(productDto.retailPriceBuy());
         product.setRetailPriceSell(null);
         product.setPurchaseBuyDate(LocalDate.now());
-        product.setState(State.BOUGHT);
+        product.setState(BOUGHT);
         return product;
     }
 
     private ProductType getProductTypeUUID(ProductDto productDto) {
         return Objects.requireNonNull(productTypeRepository
-                .findById(productDto.typeId())
+                .findById(UUID.fromString(productDto.typeId()))
                 .orElse(null)); // TODO throw something
     }
 }

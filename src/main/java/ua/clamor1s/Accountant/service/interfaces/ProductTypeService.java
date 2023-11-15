@@ -8,21 +8,14 @@ import java.util.List;
 public interface ProductTypeService {
 
     /**
-     * TODO
-     * @return
+     * receives all product types
+     * @return list of products
      */
     List<ProductType> getAll();
 
     /**
-     * TODO
-     * @param productTypeDto
+     * creates new product type
+     * @param productTypeDto dto with product type fields
      */
     void createProductType(ProductTypeDto productTypeDto);
-
-    /**
-     * TODO
-     * @param productType
-     * @return
-     */
-//    ProductType updateProductType(ProductType productType);
 }

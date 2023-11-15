@@ -1,8 +1,10 @@
 package ua.clamor1s.Accountant.service.implementations;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import ua.clamor1s.Accountant.dto.ProductDto;
 import ua.clamor1s.Accountant.entity.Product;
 import ua.clamor1s.Accountant.entity.ProductType;
@@ -53,6 +55,6 @@ public class ProductServiceImpl implements ProductService {
     private ProductType getProductTypeUUID(ProductDto productDto) {
         return Objects.requireNonNull(productTypeRepository
                 .findById(UUID.fromString(productDto.typeId()))
-                .orElse(null)); // TODO throw something
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
     }
 }

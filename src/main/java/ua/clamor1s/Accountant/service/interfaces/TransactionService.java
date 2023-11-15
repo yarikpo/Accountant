@@ -9,14 +9,16 @@ import java.util.UUID;
 public interface TransactionService {
 
     /**
-     * TODO
+     * receives all transactions
      * @return
      */
     List<Transaction> getAll();
 
     /**
-     * TODO
-     * @param transactionDto
+     * creates transaction
+     * if status is FIX -> checks if product not sold or utilized
+     * if status is SELL -> checks status not SOLD already
+     * @param transactionDto dto with transaction data
      */
     void createTransaction(TransactionDto transactionDto);
 

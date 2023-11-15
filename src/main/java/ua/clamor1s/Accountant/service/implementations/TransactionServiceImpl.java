@@ -1,8 +1,10 @@
 package ua.clamor1s.Accountant.service.implementations;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import ua.clamor1s.Accountant.dto.TransactionDto;
 import ua.clamor1s.Accountant.entity.Product;
 import ua.clamor1s.Accountant.entity.Transaction;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static ua.clamor1s.Accountant.entity.enums.State.SOLD;
-import static ua.clamor1s.Accountant.entity.enums.TransferType.SELL;
+import static ua.clamor1s.Accountant.entity.enums.TransferType.*;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +35,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional
     public void createTransaction(TransactionDto transactionDto) {
         var transaction = setTransactionWithFields(transactionDto);
+        if (transaction.getProductId().getState().equals(SOLD)) {
+            throw new IllegalArgumentException();
+        }
         if (transactionDto.transferType().toString().equals(SELL.toString())) {
             buyProduct(transaction.getProductId());
         }
@@ -73,6 +78,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     private Product getProduct(TransactionDto transactionDto) {
         return productRepository.findById(UUID.fromString(transactionDto.productId()))
-                .orElse(null); // TODO throw ...
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 }

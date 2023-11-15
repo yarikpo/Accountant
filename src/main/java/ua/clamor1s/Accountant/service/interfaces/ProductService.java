@@ -4,19 +4,18 @@ import ua.clamor1s.Accountant.dto.ProductDto;
 import ua.clamor1s.Accountant.entity.Product;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface ProductService {
 
     /**
-     * TODO
-     * @return
+     * Receives all products
+     * @return list of products
      */
     List<Product> getAll();
 
     /**
-     * TODO
-     * @param productDto
+     * creates new product
+     * @param productDto dto with product fields
      */
     void createProduct(ProductDto productDto);
 }

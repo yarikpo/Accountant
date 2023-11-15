@@ -1,8 +1,10 @@
 package ua.clamor1s.Accountant.service.implementations;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import ua.clamor1s.Accountant.dto.DepreciationDto;
 import ua.clamor1s.Accountant.entity.Product;
 import ua.clamor1s.Accountant.entity.Transaction;
@@ -25,7 +27,7 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     @Transactional
     public DepreciationDto countProductDepreciation(UUID productId) {
-        var product = productRepository.findById(productId).orElseThrow(IllegalArgumentException::new); // TODO throws....
+        var product = productRepository.findById(productId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Double depreciation = Math.min(100.0, countDepreciationDueDate(product) + countDepreciationDueTransactions(product));
         return new DepreciationDto(product, depreciation);
     }

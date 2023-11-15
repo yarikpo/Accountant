@@ -7,15 +7,15 @@ import java.util.UUID;
 public interface StatisticService {
 
     /**
-     * TODO
-     * @param productId
-     * @return
+     * counts depreciation in per cents in one product by its id
+     * @param productId id of product
+     * @return dto with product and its depreciation
      */
     DepreciationDto countProductDepreciation(UUID productId);
 
     /**
-     * TODO
-     * @return
+     * counts total sum from positive transactions
+     * @return value
      */
     Double countTotalIncome();
 }
